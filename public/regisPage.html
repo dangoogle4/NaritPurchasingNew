@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NARIT | จัดซื้อ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="narit.png" />
+    <style>
+       #absoluteCenteredDiv{
+            position: absolute;
+            top:0;
+            bottom: 300px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width:400px;
+            height: 300px;
+            text-align: center;
+       }
+        
+</style>
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup" >
+            <div id="absoluteCenteredDiv" class="container" >
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <!-- <h2 class="form-title">Sign up</h2> -->
+                        <form action="javascript:void(0)">
+                          <div class="signup-image">
+                            <figure><img src="./images/ดาวน์โหลด (1).png" alt="sing up image"></figure>
+                            <!-- <a href="/" class="signup-image-link">have an account</a> -->
+                            <!-- <a href="#" class="signup-image-link">I am already member</a> -->
+                        </div>
+                            <div class="form-group">
+                                <label>Username</label><input style="margin-left:5em" type="text" name="usernameforregis" id="usernameforregis" placeholder="Username" required/>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <label>Email</label><input style="margin-left:7em" type="text" name="email" id="email" placeholder="Email" required/>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <label>Password</label><input style="margin-left:5em" type="password" name="password" id="password" placeholder="Password" required/>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <label>Name</label> <input style="margin-left:6.5em" type="text" name="name" id="name" placeholder="Name" required/>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <label>Surname</label> <input style="margin-left:5em" type="text" name="surname" id="surname" placeholder="Surname" required/>
+                          </div>
+                          <span id="warning-message" class="warning-message"></span>
+                          <br>
+                          
+                            <!-- <div class="form-group">
+                              <label style="float: left; margin-left:3em">Priority</label>
+                             <select style="margin-left:0em" id="Priority" class="grey" onchange="changecolor(this)">
+                                    <option value="User">Select Priority</option>
+                                    <option class="black" value="Admin">Admin</option>
+                                    <option class="black" value="User">User</option>
+                                  </select>
+                            </div> -->
+                            <br>
+                            <br>
+                            <button class="btn btn-light" onclick="Add()">OK</button> 
+                             
+                        </form>
+                        
+                    </div>
+                   
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Sing in  Form
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="../registemp/images/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">Create an account</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign in</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+    </div>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+
+<script>
+function changecolor(){
+  document.getElementById("Priority").classList.remove('grey');
+  document.getElementById("Priority").classList.add('black');
+}
+  </script>
+
+<script>
+  
+  function Add() {
+    console.log("eiei")
+    // window.location.href =  "/main";
+  //   let passwordChecker = false;
+  // $("#password, #confirm-password").on("keyup", function () {
+  //   if ($("#password").val() == $("#confirm-password").val()) {
+  //     $("#warning-message").html("Password matching").css("color", "green");
+  //     passwordChecker = true;
+  //   } else {
+  //     $("#warning-message").html("Password not matching").css("color", "red");
+  //     passwordChecker = false;
+  //   }
+  //   console.log("passwordChecker "+passwordChecker)
+  // });
+    if (
+      usernameforregis != "" &&
+      email != "" &&
+      password != "" &&
+      name != "" &&
+      surname != "" &&
+      priority != ""
+      // passwordChecker == true
+    ) {
+      if (confirm("ต้องการเพิ่มผู้ใช้หรือไม่")) {
+        var usernameforregis = $("#usernameforregis").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var name = $("#name").val();
+        var surname = $("#surname").val();
+        var priority = $("#Priority").val();
+      }
+        console.log("Welcome   "+usernameforregis,email,password,name,surname,priority)
+        
+ 
+        $.post(
+          "/api/regis",
+          {
+            username: usernameforregis,
+            email: email,
+            password: password,
+            name: name,
+            surname: surname,
+            priority: priority,
+          },
+          function (data, status) {
+            // location.replace("/admin");
+            if (data) {
+              window.location.href = "/";
+            }
+          }
+        );
+      } else {
+        location.replace("/register");
+      }
+    // } else if (passwordChecker == false) {
+    //   alert("password not match !!");
+    
+  }
+</script>

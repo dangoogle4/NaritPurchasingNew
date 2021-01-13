@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NARIT | ครุภัณฑ์</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="narit.png" />
+    <style>
+
+            #absoluteCenteredDiv{
+            position: absolute;
+            top:0;
+            bottom: 300px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width:400px;
+            height: 300px;
+            text-align: center;
+       }
+       body{
+          font-family: 'Open Sans', sans-serif;
+          margin: 0 auto 0 auto;  
+          width:100%; 
+          text-align:center;
+          margin: 20px 0px 20px 0px;   
+        }
+
+    </style>
+</head>
+<body>
+
+   <!-- Sing in  Form -->
+        
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <section class="sign-in" style="margin: 150px;" >
+     <div class="container">
+         <div class="signin-content">
+             <div class="signin-image">
+                 <figure><img src="./images/ดาวน์โหลด (1).png" alt="sing up image"></figure>
+                 <!-- <a href="/register" class="signup-image-link">Create an account</a> -->
+             </div>
+ 
+             <div class="signin-form">
+                 <!-- <h2 class="form-title">Sign in</h2> -->
+                 <form action="javascript:void(0)">
+                     <div class="form-group">
+                         <label>Username</label><input style="margin-left:5em" type="text" id="username" placeholder="Username" required/>
+                     </div>
+                     <br>
+                     <div class="form-group">
+                      <label>Password</label><input style="margin-left:5.5em" type="password" id="password" placeholder="Password" required/>
+                     </div>
+                    <br>
+                     <div class="form-group form-button">     
+                         <button style="font-size: 13px" class="btn btn-light" style="cursor:pointer" onclick="login()">Login</button>
+                     </div>
+                    
+                 </form>
+                 <br>
+                 <input  style="font-size: 13px" class="btn btn-light" type="button" onclick="location.href='/register';" value="Register" />
+             </div>
+         </div>
+     </div>
+       
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <div id="absoluteCenteredDiv">
+        <form action="javascript:void(0)">
+            <div class="box">
+                <h1>Login</h1> -->
+                <!-- <img src="https://www.narit.or.th/images/00_banners/narit_logo_s.png"> -->
+                <!-- <form action="">
+                <input class="username" type="email" placeholder="Email" id="email" required>
+                <input class="username" type="password" placeholder="Password" id="password" required>
+                <button class="button" onclick="login()">login</button>
+            </div>
+        </form>
+        <div class="box-register">
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button> -->
+          <!-- <button class="button" onclick="forgetPassword()">ลืมรหัสผ่าน</button>
+        </div>
+    </div> 
+     -->
+
+
+
+
+<!-- <div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+
+      <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div> -->
+
+<!-- <script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
+</script>
+    -->
+
+</body>
+</html>
+<script>
+  // function register(){
+  //   window.location.href = "/account";
+  // }
+  
+  function login()
+  {
+   // window.location.href = "/main";
+    var username = $("#username").val();
+    var password = $("#password").val();
+    console.log("logintest"+username,password);
+
+    if(username != "")
+    {
+        if(password != "")
+        {
+          $.post("/users/login", {username:username,password:password}, 
+          function(data,status)
+          {
+              if(data)
+              {
+                //console.log(getCookie("CookieUser"));
+
+                
+                 window.location.href = "/main";
+              }
+              else{
+
+                alert("NO USER");
+                window.location.href = "/";
+              }
+          });
+        }
+    }
+
+  }
+
+
+</script>

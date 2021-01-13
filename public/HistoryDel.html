@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+	 background-color: #91ced4;
+}
+ body * {
+	 box-sizing: border-box;
+}
+ .header {
+	 background-color: #327a81;
+	 color: white;
+	 font-size: 1.5em;
+	 padding: 1rem;
+	 text-align: center;
+	 text-transform: uppercase;
+}
+ img {
+	 border-radius: 50%;
+	 height: 60px;
+	 width: 60px;
+}
+ .table-users {
+	 border: 1px solid #327a81;
+	 border-radius: 10px;
+	 box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	 max-width: calc(100% - 2em);
+	 margin: 1em auto;
+	 overflow: hidden;
+	 width: 800px;
+}
+ table {
+	 width: 100%;
+}
+ table td, table th {
+	 color: #000000;
+	 padding: 10px;
+}
+ table td {
+	 text-align: center;
+	 vertical-align: middle;
+}
+ table td:last-child {
+	 font-size: 0.95em;
+	 line-height: 1.4;
+	 text-align: left;
+}
+ table th {
+	 background-color: #ffffff;
+	 font-weight: 300;
+}
+
+ table tr:nth-child(n) {
+	 background-color: white;
+}
+ table tr:nth-child(2n+1) {
+	 background-color: #edf7f8;
+}
+ @media screen and (max-width: 700px) {
+	 table, tr, td {
+		 display: block;
+	}
+	 td:first-child {
+		 position: absolute;
+		 top: 50%;
+		 transform: translateY(-50%);
+		 width: 100px;
+	}
+	 td:not(:first-child) {
+		 clear: both;
+		 margin-left: 100px;
+		 padding: 4px 20px 4px 90px;
+		 position: relative;
+		 text-align: left;
+	}
+	 td:not(:first-child):before {
+		 color: #91ced4;
+		 content: '';
+		 display: block;
+		 left: 0;
+		 position: absolute;
+	}
+	 td:nth-child(2):before {
+		 content: 'Name:';
+	}
+	 td:nth-child(3):before {
+		 content: 'Email:';
+	}
+	 td:nth-child(4):before {
+		 content: 'Phone:';
+	}
+	 td:nth-child(5):before {
+		 content: 'Comments:';
+	}
+	 tr {
+		 padding: 10px 0;
+		 position: relative;
+	}
+	 tr:first-child {
+		 display: none;
+	}
+}
+ @media screen and (max-width: 500px) {
+	 .header {
+		 background-color: transparent;
+		 color: #fff;
+		 font-size: 2em;
+		 font-weight: 700;
+		 padding: 0;
+		 text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+	}
+	 img {
+		 border: 3px solid;
+		 border-color: #daeff1;
+		 height: 100px;
+		 margin: 0.5rem 0;
+		 width: 100px;
+	}
+	 td:first-child {
+		 background-color: #c8e7ea;
+		 border-bottom: 1px solid #91ced4;
+		 border-radius: 10px 10px 0 0;
+		 position: relative;
+		 top: 0;
+		 transform: translateY(0);
+		 width: 100%;
+	}
+	 td:not(:first-child) {
+		 margin: 0;
+		 padding: 5px 1em;
+		 width: 100%;
+	}
+	 td:not(:first-child):before {
+		 font-size: 0.8em;
+		 padding-top: 0.3em;
+		 position: relative;
+	}
+	 td:last-child {
+		 padding-bottom: 1rem !important;
+	}
+	 tr {
+		 background-color: white !important;
+		 border: 1px solid #6cbec6;
+		 border-radius: 10px;
+		 box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+		 margin: 0.5rem 0;
+		 padding: 0;
+	}
+	 .table-users {
+		 border: none;
+		 box-shadow: none;
+		 overflow: visible;
+	}
+  
+}
+table td, table th  {
+    border: 0.5px solid powderblue;
+}
+ 
+
+
+
+
+ 
+</style>
+<body onload="showMaintable()" >
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid" style="background-color: rgb(255, 255, 255);">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Purchasing</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="/main">Home</a></li>
+        <li><a href="/user">User</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/">Page 3</a></li>
+	  </ul>
+	  <ul class="nav navbar-nav navbar-right">
+		<li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	  </ul>
+    </div>
+  </nav>
+  <div style="margin: 40px;">
+	<form style="text-align:  center; ">
+      ชื่อผู้รับผิดชอบ
+      <input id="" type="text">
+         
+      ชื่องบประมาณ
+      <input  id="" type="text">
+        
+      <button onclick="search()">ค้นหา</button>
+    </form>
+    <br>
+
+
+    <!-- <div class="header" style="margin-top: 20px" >Users</div> -->
+    
+    <table cellspacing="0" style="margin-top: 100px">
+       <tr>
+		  <td>ลำดับ</td>
+          <td>รหัสจัดซื้อ</td>
+          <td>ชื่อผู้รับผิดชอบ</td>
+          <td>ยอดการจัดซื้อ</td>
+          <td>ซื่องบประมาณ</td>
+		  <td width="230">สถานะ</td>
+		  <td>เหตุผล</td>
+		  <td> แก้ไข </td>
+		  <td>ลบ</td>
+		  <tbody id="room-name"></tbody>
+       </tr>
+	   
+	</table>
+	
+ </div>
+ <button  style="float: right; margin: 40px;" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">เพิ่มข้อมูล</button>
+ 
+
+  <!-- Modal  for ADD  -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal ADD</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+
+            <label>รหัสจัดชื้อ</label>
+            <input id="order" type="text"><br>
+            <br>
+            <label>ผู้รับผิดชอบ</label>
+            <input  id="respon" type="text"><br>
+            <br>
+            <label>ยอดการจัดซื้อ</label>
+            <input id="amount" type="text"><br>  
+            <br>
+            <label>ชื่องบประมาณ</label>
+            <input  id="nameorder" type="text"><br>
+            <br>
+            <label>สถานะ</label>
+            <input  id="status" type="text"><br>
+			<br>
+			<input class="btn btn-info btn-lg" type="reset" value="Reset">
+            </form>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"  onclick="Add()" >เพิ่มข้อมูล</button>
+        </div>
+        <div class="modal-footer">
+			
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Modal for Edit-->
+  <div class="modal fade" id="Modalzz" role="dialog" >
+  <!-- <div class="modal fade" id="Modalzz" role="dialog" onload="profile()"> -->
+    <div class="modal-dialog"  >
+    
+      <!-- Modal content-->
+      <div class="modal-content" >
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal EDIT</h4>
+        </div>
+        <div class="modal-body"  id="Modal-a" >
+			
+          <form>
+			<input class="btn btn-info btn-lg" type="reset" value="Reset">
+			<!-- <div id="Modal-a"></div> -->
+			
+			
+            </form>
+            <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modalzz">Update</button> -->
+        </div>
+        <div class="modal-footer">
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modalzz" onclick="addzz()">Update</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+<script>
+  
+	function Add() {
+		console.log("dan");
+	  {
+		if (confirm("ต้องการเพิ่มผู้ใช้หรือไม่")) {
+		  var order = $("#order").val();
+		  var respon = $("#respon").val();
+		  var amount = $("#amount").val();
+		  var nameorder = $("#nameorder").val();
+		  var status = $("#status").val();
+		  var DeleteForDummyMainTable = "0";
+		  var reason = "";
+		  console.log(order,respon,amount,nameorder,status);
+		  //var group = $("#group").val();
+		  //var department = $("#department").val();
+  
+		  $.post(
+			"/api/addmaintable",
+			{
+			  name: order,
+			  lastname: respon,
+			  email: amount,
+			  phone: nameorder,
+			  password: status,
+			  reason: reason,
+			  DeleteForDummyMainTable: DeleteForDummyMainTable,
+			  //group: status,
+			  //department: department,
+			},
+
+			function (data, status) {
+			  window.location.href = "/main";
+			  
+			}
+		  );
+		 } 
+	  } 
+	}
+
+// 	function dropMainTable(obj_id) {
+// 	let dropRoomId = obj_id.toString();
+// 	console.log("DDDDANNNANANNAN"+ obj_id);
+//     // $.post("/drop/mainTable", { dropRoomId: dropRoomId }, function (data, status) {
+// 	// 	showMaintable();
+//     //   //console.log(obj_id);
+// 	// });
+//   }	
+
+		
+
+	  
+  var test;
+
+  			// var setValueForAdminPricetable = document.getElementById("nameOderForAdminTable" + String(i)).innerHTML;
+			// console.log("DATAAAA--->>>> " + setValueForAdminPricetable);
+			// localStorage.setItem("thisIsForAdminNameOderTable", setValueForAdminPricetable); //ระบุค่าครั้งที่ได้จากในนี้
+
+	function showMaintable() {
+		
+		
+    $.post("/get/maintable", function (data, status) {
+		document.getElementById("room-name").innerHTML="";
+		//console.log("Dataaa" + data.name);
+      for (let i = 0; i < data.length; i++) {
+		if(data[i].deldummymaintable == 1){
+			test = data[i]._id;
+		console.log("----->>>   "+test);
+		  //console.log(data[i]._id);
+		  str2 = data[i]._id.replace(/\s/g, '');
+		  str = data[i]._id.replace(/\s/g, '');
+		  //console.log("STRRRRRRRRRRRR ---->>    "+str);
+        roomId = data;
+		// let rstripId = data[i]._id.rs
+        //$("#room-name-value").val(data[0].room);
+        $("#room-name").append(
+		  "<tr><td>" +           
+			(i + 1) +
+			"</td>" +
+			"<td><a onclick='GotoAnotherTable1(" + i + ")' id='roWorder" + i + "' >" + data[i].order +
+			"</a></td>" +
+			"<td>" +
+            data[i].respon +
+			"</td>" +
+			"<td id='AmountForAnotherTable" + i + "'>" +
+            data[i].amount +
+			"</td>" +
+			"<td id='nameOrderForAnotherTable" + i + "' >" +
+            data[i].nameorder +
+			"</td>" +
+			// "</td>" +
+			// "<td><a  id='nameOderForAdminTable" + i + "' >" + data[i].nameorder +
+			// "</a></td>" +
+			"<td>" +
+            data[i].status +
+			"</td>" +
+			"<td>" +
+            data[i].reason +
+			"</td>" +
+			// "<td>" +
+			// <a data-toggle="modal" data-target="#Modalzz">แก้ไข</a> +
+			// "</td>" +
+			 "<td><a   class='btn btn-info' data-target='#exampleModal02' onclick='edit("+ i +")' >คืนค่า</a>" +
+				// "<td><a data-toggle='modal' data-target='#Modalzz' data-target='#exampleModal02' onclick='addzz()' >แก้ไข</a>" +
+            "<div class='modal fade' id='exampleModal02' tabindex='-1' role='dialog' aria-labelledby='exampleModal02Label' aria-hidden='true' data-backdrop='static' data-keyboard='false'>" +
+            "<div class='modal-dialog modal-dialog-centered'>" +
+            "<div class='modal-content'>" +
+            "<div class='modal-header'>" +
+            "<h5 class='modal-title' id='exampleModal02Label'>แก้ไข</h5>" +
+            "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>" +
+            "<span aria-hidden='true'>&times;</span>" +
+            "</button>" +
+            "</div>" +
+            "<div class='modal-footer'>" +
+            "<button type='button' class='btn btn-secondary' data-dismiss='modal'>ยกเลิก</button>" +
+            "</div>" +
+            "</div></td>" +
+			// "<td><button href='#' class='btn btn-danger' onclick=dropMainTable('"+str.toString()+"') >ลบ</button></td>" +
+			"<td><button class='btn btn-danger' onclick='dropMainTableForDummyMainTable("+ i +")' >ลบ</button></td>" +
+			"</tr>"
+			
+
+        );
+			}
+		// test = data[i]._id;
+		// console.log("----->>>   "+test);
+		//   //console.log(data[i]._id);
+		//   str2 = data[i]._id.replace(/\s/g, '');
+		//   str = data[i]._id.replace(/\s/g, '');
+		//   //console.log("STRRRRRRRRRRRR ---->>    "+str);
+        // roomId = data;
+		// // let rstripId = data[i]._id.rs
+        // //$("#room-name-value").val(data[0].room);
+        // $("#room-name").append(
+		//   "<tr><td>" +           
+		// 	(i + 1) +
+		// 	"</td>" +
+		// 	"<td><a onclick='GotoAnotherTable1(" + i + ")' id='roWorder" + i + "' >" + data[i].order +
+		// 	"</a></td>" +
+		// 	"<td>" +
+        //     data[i].respon +
+		// 	"</td>" +
+		// 	"<td id='AmountForAnotherTable" + i + "'>" +
+        //     data[i].amount +
+		// 	"</td>" +
+		// 	"<td id='nameOrderForAnotherTable" + i + "' >" +
+        //     data[i].nameorder +
+		// 	"</td>" +
+		// 	// "</td>" +
+		// 	// "<td><a  id='nameOderForAdminTable" + i + "' >" + data[i].nameorder +
+		// 	// "</a></td>" +
+		// 	"<td>" +
+        //     data[i].status +
+		// 	"</td>" +
+		// 	"<td>" +
+        //     data[i].reason +
+		// 	"</td>" +
+		// 	// "<td>" +
+		// 	// <a data-toggle="modal" data-target="#Modalzz">แก้ไข</a> +
+		// 	// "</td>" +
+		// 	 "<td><a data-toggle='modal' data-target='#Modalzz' class='btn btn-info' data-target='#exampleModal02' onclick='edit("+ i +")' >แก้ไข</a>" +
+		// 		// "<td><a data-toggle='modal' data-target='#Modalzz' data-target='#exampleModal02' onclick='addzz()' >แก้ไข</a>" +
+        //     "<div class='modal fade' id='exampleModal02' tabindex='-1' role='dialog' aria-labelledby='exampleModal02Label' aria-hidden='true' data-backdrop='static' data-keyboard='false'>" +
+        //     "<div class='modal-dialog modal-dialog-centered'>" +
+        //     "<div class='modal-content'>" +
+        //     "<div class='modal-header'>" +
+        //     "<h5 class='modal-title' id='exampleModal02Label'>แก้ไข</h5>" +
+        //     "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>" +
+        //     "<span aria-hidden='true'>&times;</span>" +
+        //     "</button>" +
+        //     "</div>" +
+        //     "<div class='modal-footer'>" +
+        //     "<button type='button' class='btn btn-secondary' data-dismiss='modal'>ยกเลิก</button>" +
+        //     "</div>" +
+        //     "</div></td>" +
+        //     "<td><button href='#' class='btn btn-danger' onclick=dropMainTable('"+str.toString()+"') >ลบ</button></td>" +
+		// 	"</tr>"
+			
+
+        // );
+      }
+    });
+  }
+
+//   function profile(i){
+//     //var nameuser = JSON.parse(getCookie("CookieUser")).id;
+// 	// console.log(nameuser);
+// 	//let profile = obj_id.toString();
+//     $.post('/get/profile', function(data, status){
+// 	//$.post('/get/profile',{profile:profile}, function(data, status){
+//         // console.log(data);
+//         $("#order").val(data[i].order);
+//         $("#respon").val(data[i].respon);
+//         $("#amount").val(data[i].amount);
+//         $("#nameorder").val(data[i].nameorder);
+//         $("#status").val(data[i].status);
+//         //$("#group").val(data[0].group);
+//         //$("#department").val(data[0].department);
+
+//     });
+// }
+		//function edit(i){
+			
+			
+
+			function GotoAnotherTable1(i) {
+				console.log("datanakub--->> "+ i);
+			let setValue = document.getElementById("roWorder" + String(i)).innerHTML;
+			console.log("DATAAAA--->>>> " + setValue);
+			localStorage.setItem("thisIsParameterName", setValue); //ระบุค่าครั้งที่ได้จากในนี้
+
+			setValue = document.getElementById("nameOrderForAnotherTable" + String(i)).innerHTML;
+			console.log("DATAAAA--->>>> " + setValue);
+			localStorage.setItem("thisIsParameterNameForNameOrder", setValue); //ระบุค่าครั้งที่ได้จากในนี้
+
+			setValue = document.getElementById("AmountForAnotherTable" + String(i)).innerHTML;
+			console.log("AmountForAnotherTable--->>>> " + setValue);
+			localStorage.setItem("thisIsParameterNameForAmount", setValue); //ระบุค่าครั้งที่ได้จากในนี้
+
+			window.location.href = "/admin";
+			}
+
+		function edit(DataForQueryData){
+			console.log("adqwdjqwd9qwd--->>" + DataForQueryData );
+			$.post("/get/maintable", function (data, status) {
+						
+						
+						getDataId2 = data[DataForQueryData]._id;
+						$.post("/save/recovermain",{ 
+							ServergetDataId:getDataId2,
+							
+                            // department: department
+                            
+                        },function(data, status){
+							window.location.href = "/main"
+			});
+						
+			});
+		}
+		
+	
+
+
+		function dropMainTableForDummyMainTable(DataForQueryData){
+			console.log('Dan--->>>'+ getDataId);
+			var deldummymaintablemark2 = "1";
+			
+
+			$.post("/get/maintable", function (data, status) {
+						
+						
+						getDataId2 = data[DataForQueryData]._id;
+						$.post("/save/editmaindummydrop",{ 
+							ServergetDataId:getDataId2,
+							
+                            // department: department
+                            
+                        },function(data, status){
+							showMaintable();    
+			});
+						
+			});
+			//console.log("DUMMMMMMMMMMMMMMMMMMMMY    "+deldummymaintablemark2);
+
+    		
+		}
+
+
+		function addzz(){
+			console.log('Dan--->>>'+ getDataId);
+    var ordernew = $("#ordernew").val();
+    var responnew = $("#responnew").val();
+    var amountnew = $("#amountnew").val();
+    var nameordernew = $("#nameordernew").val();
+    var statusnew = $("#statusnew").val();
+
+	console.log(ordernew);
+
+    $.post("/save/editmain",{  
+							ServergetDataId:getDataId,	
+							ordernew:ordernew,
+                            responnew:responnew,
+                            amountnew:amountnew,
+                            nameordernew:nameordernew,
+                            statusnew:statusnew,
+                            // department: department
+                            
+                        },function(data, status){
+							showMaintable();    
+        });
+}			
+		
+			
+var getDataId = "";
+
+			
+  </script>
+

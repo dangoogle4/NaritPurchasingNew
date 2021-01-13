@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+	 background-color: #91ced4;
+}
+ body * {
+	 box-sizing: border-box;
+}
+ .header {
+	 background-color: #327a81;
+	 color: white;
+	 font-size: 1.5em;
+	 padding: 1rem;
+	 text-align: center;
+	 text-transform: uppercase;
+}
+ img {
+	 border-radius: 50%;
+	 height: 60px;
+	 width: 60px;
+}
+ .table-users {
+	 border: 1px solid #327a81;
+	 border-radius: 10px;
+	 box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+	 max-width: calc(100% - 2em);
+	 margin: 1em auto;
+	 overflow: hidden;
+	 width: 800px;
+}
+ table {
+	 width: 100%;
+}
+ table td, table th {
+	 color: #000000;
+	 padding: 10px;
+}
+ table td {
+	 text-align: center;
+	 vertical-align: middle;
+}
+ table td:last-child {
+	 font-size: 0.95em;
+	 line-height: 1.4;
+	 text-align: left;
+}
+ table th {
+	 background-color: #ffffff;
+	 font-weight: 300;
+}
+
+ table tr:nth-child(n) {
+	 background-color: white;
+}
+ table tr:nth-child(2n+1) {
+	 background-color: #edf7f8;
+}
+ @media screen and (max-width: 700px) {
+	 table, tr, td {
+		 display: block;
+	}
+	 td:first-child {
+		 position: absolute;
+		 top: 50%;
+		 transform: translateY(-50%);
+		 width: 100px;
+	}
+	 td:not(:first-child) {
+		 clear: both;
+		 margin-left: 100px;
+		 padding: 4px 20px 4px 90px;
+		 position: relative;
+		 text-align: left;
+	}
+	 td:not(:first-child):before {
+		 color: #91ced4;
+		 content: '';
+		 display: block;
+		 left: 0;
+		 position: absolute;
+	}
+	 td:nth-child(2):before {
+		 content: 'Name:';
+	}
+	 td:nth-child(3):before {
+		 content: 'Email:';
+	}
+	 td:nth-child(4):before {
+		 content: 'Phone:';
+	}
+	 td:nth-child(5):before {
+		 content: 'Comments:';
+	}
+	 tr {
+		 padding: 10px 0;
+		 position: relative;
+	}
+	 tr:first-child {
+		 display: none;
+	}
+}
+ @media screen and (max-width: 500px) {
+	 .header {
+		 background-color: transparent;
+		 color: #fff;
+		 font-size: 2em;
+		 font-weight: 700;
+		 padding: 0;
+		 text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+	}
+	 img {
+		 border: 3px solid;
+		 border-color: #daeff1;
+		 height: 100px;
+		 margin: 0.5rem 0;
+		 width: 100px;
+	}
+	 td:first-child {
+		 background-color: #c8e7ea;
+		 border-bottom: 1px solid #91ced4;
+		 border-radius: 10px 10px 0 0;
+		 position: relative;
+		 top: 0;
+		 transform: translateY(0);
+		 width: 100%;
+	}
+	 td:not(:first-child) {
+		 margin: 0;
+		 padding: 5px 1em;
+		 width: 100%;
+	}
+	 td:not(:first-child):before {
+		 font-size: 0.8em;
+		 padding-top: 0.3em;
+		 position: relative;
+	}
+	 td:last-child {
+		 padding-bottom: 1rem !important;
+	}
+	 tr {
+		 background-color: white !important;
+		 border: 1px solid #6cbec6;
+		 border-radius: 10px;
+		 box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+		 margin: 0.5rem 0;
+		 padding: 0;
+	}
+	 .table-users {
+		 border: none;
+		 box-shadow: none;
+		 overflow: visible;
+	}
+  
+}
+table td, table th  {
+    border: 0.5px solid powderblue;
+}
+  
+.dropbtn {
+  background-color: #ffffff;
+  color: rgb(73, 69, 69);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #ffffff;
+}
+
+
+ 
+</style>
+
+<body onload="showData()"   >
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid" style="background-color: rgb(255, 255, 255);">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/main">Purchasing</a>
+      </div>
+      <!-- <ul class="nav navbar-nav">
+        <li ><a href="/main">Home</a></li>
+        <li><a href="/user">user</a></li>
+        <li><a href="/admin">admin</a></li>
+        <li><a href="/">Page 3</a></li>
+      </ul> -->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="dropdown">
+             <button class="dropbtn">Setting
+             <i class="fa fa-caret-down"></i>
+             </button>
+             <div class="dropdown-content">
+             <a href="/useredit">ดูข้อมูลสมาชิก</a>
+             <a href="/shopedit">ดูข้อมูลร้านค้า</a>
+             <!-- <a href="#">Link 3</a> -->
+             </div>
+           </div>
+           </li>
+        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+    </div>
+  </nav>
+  <div id="Home" class="tabcontent">
+    <!-- <h3>Home</h3> -->
+    <div style="margin: 40px;">
+        <form style="text-align:  center;">
+          <!-- <form style="text-align:  center; "> -->
+          
+          <label > รหัสการชื้อ </label>&nbsp;&nbsp;<input readonly id="codeForBuy" type="text" >
+             
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label> ชื่องบประมาณ </label>&nbsp;&nbsp; <input  readonly id="nameproject" type="text">
+            
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label>ราคารวมทั้งหมดของทุกชิ้น </label> &nbsp;&nbsp;<input readonly id="amountAll" type="text">
+          <!-- ค้นหาที่นี่
+          <input id="myInput" type="text" placeholder="ค้นหาที่นี่">
+          <table id="myTable" cellspacing="0"> -->
+    
+          <!--<button >ค้นหา</button>-->
+        </form>
+        <br>
+        <br>
+    
+        <!-- <div class="header">Users</div> -->
+        <table id ="myInput"cellspacing="0" style="margin-top: 100px">
+           <tr>
+              <th>ลำดับ </th>
+              <th>ชื่อวัสดุ</th>
+              <th>Part Number</th>
+              <th>ราคา</th>
+              <th>จำนวน</th>
+              <th>ราคารวม</th>
+              <th>ผู้รับผิดชอบ</th>
+              <th>รูป</th>
+              <!-- <th>รูป</th> -->
+              <th>สถานะ</th>
+              <!-- <th>ร้านค้า</th> -->
+              <th>แก้ไข</th>
+              <!-- <th>ลบ</th> -->
+              <tbody id="room-name"></tbody>
+           </tr>
+     
+          
+
+          
+        </table>
+     </div>
+
+     <!-- <div>
+      <form>
+        รหัสการชื้อ 
+        <input name="first" type="text">
+           
+        ชื่องบประมาณ
+        <input  name="last" type="text">
+          
+        ราคารวมทั้งหมดของทุกชิ้น
+        <input  name="lastmak" type="text">
+        ค้นหาที่นี่
+        <input id="myInput" type="text" placeholder="ค้นหาที่นี่">
+        <table id="myTable" cellspacing="0">
+  
+        <<button >ค้นหา</button>-->
+      <!-- </form>
+      <br>
+  
+  
+       <div class="header">Shop</div> -->
+      
+         <!-- <tr>
+            <th>ลำดับ </th>
+            <th>ชื่อวัสดุ</th>
+            <th>Part Number</th>
+            
+            <tbody id="room-namezz"></tbody>
+         </tr> -->
+   
+        
+
+<!--         
+      </table>
+   </div>  -->
+     <button style="float: right; margin: 20px;" type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal">เพิ่มข้อมูลสั่งชื้อ</button>
+     <button style="float: right; margin: 20px;" type="button"  class="btn btn-light" data-toggle="modal" data-target="#ModalForAddShop">เพิ่มข้อมูลร้านค้า</button>
+     <!-- <button  style="float: right; margin: 10px;" onclick='showshop()'>DATAALL</button> -->
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">เพิ่มข้อมูล</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <label>ร้านค้าของท่าน</label>&nbsp;&nbsp;&nbsp;&nbsp;<select class="custom-select storage" id="storage" required></select>
+              <br>
+              <br>
+                <label>ชื่อวัสดุ</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  id="item" name="item" type="text"><br>
+                <br>
+                <label>Part Number</label>
+                <input id="partnumber" name="partnumber" type="text"><br>  
+                <br>
+                <label>ราคา</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  id="price" name="price" type="number"><br>
+                <br>
+                <label>จำนวน</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  id="amountz" name="amount" type="number"><br>
+                <br>
+                <label>ราคารวม</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  id="sumprice" name="sumprice" type="text"><br>
+                <br>
+                <label>ผู้รับผิดชอบ</label>&nbsp;&nbsp;&nbsp;&nbsp;<input  id="responsibleperson" name="responsibleperson" type="text"><br>
+                <br>
+                <label >สถานะ</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  id="statusz" type="text"><br>
+                <br>
+                <div class="form-group">
+                    <label for="img">รูป:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+                <br>
+                <button type="button" data-toggle="modal" data-target="#myModal" onclick="addData()">เพิ่มข้อมูล</button>
+                <input  type="reset" value="ล้าง">
+                </form>    
+            </div>
+            <!-- <div class="modal-footer">
+              
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
+          </div>
+          
+        </div>
+      </div>
+
+      <div id="shopNameTab"><button style="margin-left: 40px;" type="button" class="btn btn-light" onclick="showAllData()">DataAll</button>&nbsp;</div>
+
+      <div class="modal fade" id="ModalForAddShop" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">แก้ไขข้อมูล</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <label>ชื่อร้านค้า</label>
+                <input name="nameshop" type="text" id="nameshop"><br>
+                <br>
+              
+                
+                <label for="typeshop">ประเภทร้านค้า</label>
+                <select name="typeshopp" id="typeshoppp">
+                  <option value="1">ในประเทศ</option>
+                  <option value="2">ต่างประเทศ</option>
+                </select>
+                <br>
+                <br>
+                <label>ภาษีร้านค้า</label>
+                <input name="taxshop" type="float" id="taxshop"><br>  
+                <br>
+                <button type="button"  data-toggle="modal" data-target="#ModalForAddShop" onclick="addShop()">บันทึก</button>
+                <input  type="reset" value="ล้าง">
+                </form>    
+            </div>
+            <!-- <div class="modal-footer">
+              
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
+          </div>
+          
+        </div>
+      </div>
+
+
+
+
+
+
+  </div>
+ 
+    
+  
+  
+  
+  
+
+    
+      <!-- Modal -->
+      <div class="modal fade" id="" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <label>ชื่อร้าน</label>
+                <input name="first" type="text"><br>
+                <br>
+                <label>ชื่อวัสดุ</label>
+                <input  name="last" type="text"><br>
+                <br>
+                <label>Part Number</label>
+                <input name="first" type="text"><br>  
+                <br>
+                <label>ราคา</label>
+                <input  name="last" type="text"><br>
+                <br>
+                <label>จำนวน</label>
+                <input  name="last" type="text"><br>
+                <br>
+                <label>ราคารวม</label>
+                <input  name="last" type="text"><br>
+                <br>
+                <label>ผู้รับผิดชอบ</label>
+                <input  name="last" type="text"><br>
+                <br>
+                <label>สถานะ</label>
+                <input  name="last" type="text"><br>
+                <div class="form-group">
+                    <label for="img">รูป:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+                <br>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">เพิ่มข้อมูล</button>
+                <input class="btn btn-info btn-lg" type="reset" value="Reset">
+                </form>    
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+  </div>
+ 
+
+
+  
+     
+    
+
+
+  <!-- Modal for Edit-->
+  <div class="modal fade" id="ModalForEditData" role="dialog" >
+    <!-- <div class="modal fade" id="Modalzz" role="dialog" onload="profile()"> -->
+      <div class="modal-dialog"  >
+      
+        <!-- Modal content-->
+        <div class="modal-content" >
+          <div class="modal-header" >
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal EDIT</h4>
+          </div>
+          <div class="modal-body"  id="Modal-b" >
+        
+            <form>
+        <input class="btn btn-info btn-lg" type="reset" value="Reset">
+        <!-- <div id="Modal-a"></div> -->
+        
+        
+              </form>
+              <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modalzz">Update</button> -->
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalForEditData" onclick="addEdit()">UpdateData</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  
+  <div id="shopNameTab"></div>
+  <!-- <button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">ร้านแรก</button>
+ <!<button class="tablink" onclick="showshop()" >ร้านสอง</button> -->
+  <!-- <button class="tablink" onclick="openPage('News', this, 'green')" >ร้านสอง</button> 
+  
+  
+  <button class="tablink" onclick="openPage('Contact', this, 'blue')" >ร้านสาม</button>
+  <button class="tablink" onclick="openPage('About', this, 'orange')">ร้านสี่</button> --> 
+  
+  
+  
+  <script>
+  function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+    if (pageName) {
+
+      //console.log("data");
+    //   $.post("/get/shop", function (data, status) {
+    //   console.log(data);
+		//   //document.getElementById("room-namezz").innerHTML="";
+    //   for (let i = 0; i < data.length; i++) {
+		//   //console.log(data[i]._id);
+		//   str = data[i]._id.replace(/\s/g, '');
+		//   console.log(str);
+    //     roomId = data;
+		// // let rstripId = data[i]._id.rs
+    //     //$("#room-name-value").val(data[0].room);
+    //     $("#shopNameTab").append(
+		//   "<tr><td>" +
+    //         (i + 1) +
+    //         "</td>" +
+    //         "<td>"+
+    //         "<button id='order"+i+"'>" + 
+    //         data[i].nameOfShop +
+    //   "</button>" +
+    //   "</td>" +
+		// 	"<td>" +
+    //         data[i].typeOfShop +
+		// 	"</td>" 
+			
+			
+
+    //     );
+    //   }
+    // });
+  
+
+  }
+
+  function dropDataKrub(obj_id) {
+	let dropRoomId = obj_id.toString();
+	console.log(obj_id);
+    $.post("/drop/DataKrup", { dropRoomId: dropRoomId }, function (data, status) {
+      showData();
+      console.log(obj_id);
+	});
+  }	
+
+  function addEdit(){
+			console.log('DDan');
+    //var shopnew = $("#shopnew").val();
+    var itemnew = $("#itemnew").val();
+    var partnumbernew = $("#partnumbernew").val();
+    var pricenew = $("#pricenew").val();
+    var amountnew = $("#amountnew").val();
+    var sumpricenew = $("#sumpricenew").val();
+    var responsiblepersonnew = $("#responsiblepersonnew").val();
+    var statusznew = $("#statusznew").val();
+   //var statusnew = $("#statusnew").val();
+    //var statusnew = $("#statusnew").val();
+
+
+  console.log(shopnew,itemnew,partnumbernew);
+  console.log(getDataId);
+
+    $.post("/save/editdata",{  
+							              'ServergetDataId':getDataId,	
+							              //'shopnew':shopnew,
+                            'itemnew':itemnew,
+                            'partnumbernew':partnumbernew,
+                            'pricenew':pricenew,
+                            'amountnew':amountnew,
+                            'sumpricenew':sumpricenew,	
+							              'responsiblepersonnew':responsiblepersonnew,
+                            'statusznew':statusznew,
+                            //amountnew:amountnew,
+                            // nameordernew:nameordernew,
+                            // statusnew:statusnew,
+                            // department: department
+                            
+                        },function(data, status){
+							showData();
+        });
+    }
+  }
+  
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+  </script>
+
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+
+  
+	function addData() {
+		console.log("danxxx");
+	  {
+		if (confirm("ต้องการเพิ่มผู้ใช้หรือไม่")) {
+      //var shop = $("#shop").val();
+      var codeForBuy = $("#codeForBuy").val();
+      var item = $("#item").val();
+		  var partnumber = $("#partnumber").val();
+		  var price = $("#price").val();
+      var amount = $("#amountz").val();
+      var priceadmin =  "";
+      var amountadmin =  "";
+      var sumprice = $("#sumprice").val();
+      var sumpriceadmin =  "";
+      var responsibleperson = $("#responsibleperson").val();
+      var statusz = $("#statusz").val();
+      var storage = $("#storage").val();
+      console.log("NAMEOFSHOP!!!---> "+codeForBuy);
+		  //var group = $("#group").val();
+		  //var department = $("#department").val();
+  
+		  $.post(
+			"/api/adddata",
+			{
+			  //shop: shop,
+        item: item,
+			  partnumber: partnumber,
+        price: price,
+        amount: amount,
+        priceadmin: priceadmin,
+        amountadmin: amountadmin,
+        sumprice: sumprice,
+        sumpriceadmin: sumpriceadmin,
+        responsibleperson: responsibleperson,
+        statusz: statusz,
+        storage: storage,
+        mainid: codeForBuy,
+        //picture: req.body.picture,
+        //reason:  req.body.reason,
+			  //group: status,
+			  //department: department,
+			},
+
+			function (data, status) {
+			  window.location.href = "/user";
+			  
+			}
+		  );
+		 } 
+	  } 
+  }
+
+  function addShop() {
+		console.log("danxxx");
+	  {
+		if (confirm("ต้องการเพิ่มผู้ใช้หรือไม่")) {
+		  var shop = $("#nameshop").val();
+		  var type = $("#typeshoppp").val();
+		  var tax = $("#taxshop").val();
+      console.log(shop,type,tax);
+		  //var group = $("#group").val();
+		  //var department = $("#department").val();
+      if(tax="7"){
+        tax=1.07;
+      }
+		  $.post(
+			"/api/addshop",
+			{
+			  shop: shop,
+			  type: type,
+			  tax: tax,
+        //picture: req.body.picture,
+        //reason:  req.body.reason,
+			  //group: status,
+			  //department: department,
+			},
+
+			function (data, status) {
+        console.log(data);
+			  window.location.href = "/user";
+			  
+			}
+		  );
+		 } 
+	  } 
+  }
+  
+  function showData() {
+
+    console.log("amountAll"+getValueLocalStorage,getValueLocalStorageNameOrder,getValueLocalStorageAmount);
+
+    $.post("/get/maintable", function (data, status) {
+      console.log(data);
+		//document.getElementById("room-name").innerHTML="";
+      for (let i = 0; i < data.length; i++) {
+		  //console.log(data[i]._id);
+		  str = data[i]._id.replace(/\s/g, '');
+		  console.log(str);
+        roomId = data;
+		// let rstripId = data[i]._id.rs
+        //$("#room-name-value").val(data[0].room);
+          $("#codeForBuy").val(getValueLocalStorage);
+          $("#nameproject").val(getValueLocalStorageNameOrder);
+          $("#amountAll").val(getValueLocalStorageAmount);
+          //console.log("wpodkpoqwkdpqw"+getValueLocalStorageAmount);
+        
+      }   
+    }); 
+
+
+    $.post("/get/shopforadd", function (data, status) {
+      let roomData = data;
+      for (let i = 0; i < roomData.length; i++) {
+        let roomName = roomData[i].nameOfShop;
+        console.log("dadadadadadad--->>>>>???? "+roomData[i]._id)
+        $(".storage").append(
+          "<option value=" + roomData[i]._id + ">" + roomName + "</option>"
+        );
+      }
+              });
+    
+		
+    $.post("/get/dataForSearchTableMainIdUser", {_ID: getValueLocalStorage},function (data, status) {
+    document.getElementById("room-name").innerHTML="";
+      
+      console.log(data);
+		//document.getElementById("room-name").innerHTML="";
+      for (let i = 0; i < data.length; i++) {
+        data[i].sumprice =  data[i].price * data[i].amount;
+		  //console.log(data[i]._id);
+		  str = data[i]._id.replace(/\s/g, '');
+		  console.log(str);
+        roomId = data;
+		// let rstripId = data[i]._id.rs
+        //$("#room-name-value").val(data[0].room);
+        $("#room-name").append(
+		  "<tr><td>" +
+            (i + 1) +
+            "</td>" +    
+			"<td>" +
+            data[i].item +
+			"</td>" +
+			"<td>" +
+            data[i].partnumber +
+			"</td>" +
+			"<td>" +
+            data[i].price +
+			"</td>" +
+			"<td>" +
+            data[i].amount +
+      "</td>" +
+      "<td>" +
+            data[i].sumprice +
+      "</td>" +
+      "<td>" +
+            data[i].responsibleperson +
+      "</td>" +
+      "<td>" +
+            data[i].statusz +
+      "</td>" +
+      // "<td>" +
+      //       ShowShopName[data[i].shopid] +
+      // "</td>" +
+			// "<td>" +
+			// <a data-toggle="modal" data-target="#Modalzz">แก้ไข</a> +
+			// "</td>" +
+			 "<td><a data-toggle='modal' data-target='#ModalForEditData'   onclick='editData("+i+")' >แก้ไข</a>" +
+				//"<td><a data-toggle='modal' data-target='#Modalzz' data-target='#exampleModal02' onclick='save()' >แก้ไข</a>" +
+            "<div class='modal fade' id='exampleModal02' tabindex='-1' role='dialog' aria-labelledby='exampleModal02Label' aria-hidden='true' data-backdrop='static' data-keyboard='false'>" +
+            "<div class='modal-dialog modal-dialog-centered'>" +
+            "<div class='modal-content'>" +
+            "<div class='modal-header'>" +
+            "<h5 class='modal-title'  id='exampleModal02Label'>แก้ไข</h5>" +
+            "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>" +
+            "<span aria-hidden='true'>&times;</span>" +
+            "</button>" +
+            "</div>" +
+            "<div class='modal-footer'>" +
+            "<button type='button' class='btn btn-secondary' data-dismiss='modal'>ยกเลิก</button>" +
+            "</div>" +
+            "</div></td>" +
+            // "<td><button href='#' onclick=dropDataKrub('"+str.toString()+"') >ลบ</button></td>" +
+			"</tr>"
+			
+
+        );
+      }
+    });
+    $.post("/get/shop", function (data, status) {
+
+      //document.getElementById("room-namezz").innerHTML="";
+      // $("#shopNameTab").append(
+      //     "<a style='margin-left: 40px;'></a>"
+      //   );
+      for (let i = 0; i < data.length; i++) {
+       
+		  //console.log(data[i]._id);
+		  str = data[i]._id.replace(/\s/g, '');
+		  console.log(str);
+        roomId = data;
+		// let rstripId = data[i]._id.rs
+        //$("#room-name-value").val(data[0].room);
+        $("#shopNameTab").append(
+		  // "<tr><td>" +
+      //       (i + 1) +
+      //       "</td>" +
+            //  "<td>"+ "<button class='tablink' onclick='"+openPage+"('"+data[i].nameOfShop+"'',"+this+", 'red')' id='order"+i+"'>" + data[i].nameOfShop +"</button>" + "</td>" 
+            // "<td><button href='#' onclick=openPage('"+data[i].nameOfShop+"')  >name</button></td>" 
+            // "<button></button>" 
+             "<button class='btn btn-light' value='" + data[i]._id +"' id='forshop" + i + "' onclick='showshop("+ i +")'>" + data[i].nameOfShop +"</button>&nbsp;"
+             
+             
+              // +"<input type='hidden' id='idshop"+i+"' value='" + data[i]._id +"'></input>"
+            // ใช่ปะ ไรนะ ได้ ๆ  เยส      งานไม่ทำละเหรอพี่55555      
+			
+			
+
+        );
+      }
+      
+    });
+  }
+
+  function openPage(pageName,elmnt,color) {
+    console.log("openPage");
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      elmnt.style.backgroundColor = color;
+    }
+
+  function editData(i){
+			console.log("addzzzz");
+			$.post("/get/data", function (data, status) {
+						
+				console.log(data[i]._id);
+        getDataId = data[i]._id;
+        console.log(data);
+				//console.log("add");
+				document.getElementById("Modal-b").innerHTML="";
+				$("#Modal-b").append(
+          "ชื่อวัสดุ <br>"+
+					"<input id='itemnew'type='text' type='text'value='"+ data[i].item +"'>" +'<br>'+ 
+          '<br>'+
+          "Part Number <br>"+
+					"<input id='partnumbernew'type='text' type='text'value='"+ data[i].partnumber +"'>" +'<br>'+ 
+          '<br>'+
+          "ราคา <br>"+
+					"<input id='pricenew'type='text' type='text'value='"+ data[i].price +"'>" +'<br>'+ 
+          '<br>'+
+          "จำนวน <br>"+
+					"<input id='amountnew'type='text' type='text'value='"+ data[i].amount +"'>" +'<br>'+ 
+          '<br>'+
+          "ราคารวม <br>"+
+					"<input id='sumpricenew'type='text' type='text'value='"+ data[i].sumprice +"'>" +'<br>'+ 
+          '<br>'+
+          "ผู้รับผิดชอบ <br>"+
+					"<input id='responsiblepersonnew'type='text' type='text'value='"+ data[i].responsibleperson +"'>" +'<br>'+ 
+          '<br>'+
+          "สถานะ <br>"+
+					"<input id='statusznew'type='text' type='text'value='"+ data[i].statusz +"'>" +'<br>'+ 
+          '<br>'+
+          "รูป <br>"+
+					"<input type='file' id='img' name='img' accept='image/*'>"
+
+				);
+						
+						
+			});
+    }
+
+    
+
+    
+    function showshop(val) {
+
+      console.log("DDDDDDDD---->>   "+ val)
+      //console.log("PEEGALE:"+ data[i].nameOfShop)
+      var valueid = document.getElementById("forshop"+val).value;
+
+      console.log("มาแล้วสัส   -----"+ valueid) // ส่งไป >> ได้ ได้
+
+      //กรีด เดะวันนี้ไปชื้อบราวนี้ให้เลย มึงถามเขาก่อนส่งมาจะบูดไหม 55555 ช๊อต
+
+    $.post("/get/showshopnameintable",{ '_ID': valueid }, function (data, status) {
+      document.getElementById("room-name").innerHTML="";
+      for (let i = 0; i < data.length; i++) {
+
+      str = data[i]._id.replace(/\s/g, '');
+		  console.log(str);
+        roomId = data;
+		    // let rstripId = data[i]._id.rs
+        //$("#room-name-value").val(data[0].room);
+        $("#room-name").append(
+		  "<tr><td>" +
+            (i + 1) +
+            "</td>" +
+            "<td id='order"+i+"'>" +
+              ShowShopName[data[i].shopid] +
+              //  ShowShopName[data[i].shopid] +
+      "</td>" +
+      "<td >" +
+              data[i].item +
+              //  ShowShopName[data[i].shopid] +
+			"</td>" 
+			
+			
+
+        );
+      }
+      
+    });
+  
+  }
+
+  function dropDataKrub(obj_id) {
+	let dropRoomId = obj_id.toString();
+	console.log(obj_id);
+    $.post("/drop/DataKrup", { dropRoomId: dropRoomId }, function (data, status) {
+      showData();
+      console.log(obj_id);
+	});
+  }	
+
+  var ShowShopName = {};
+
+  $(document).ready(function(){
+      $.post('/get/shop', function(data, status)
+      {
+        ShopName = data;
+          for(let i=0; i<ShopName.length; i++)
+          {
+              // console.log([data[i]]); 
+              let objId = ShopName[i]._id;
+
+              ShowShopName[objId] = ShopName[i].nameOfShop;
+
+              //let nameCategory = categoryName[i].equip_category;
+
+          }
+      });
+  });
+
+
+
+  function addEdit(){
+			console.log('DDan');
+    var shopnew = $("#shopnew").val();
+    var itemnew = $("#itemnew").val();
+    var partnumbernew = $("#partnumbernew").val();
+    var pricenew = $("#pricenew").val();
+    var amountnew = $("#amountnew").val();
+    var sumpricenew = $("#sumpricenew").val();
+    var responsiblepersonnew = $("#responsiblepersonnew").val();
+    var statusznew = $("#statusznew").val();
+   //var statusnew = $("#statusnew").val();
+    //var statusnew = $("#statusnew").val();
+
+
+  console.log(shopnew,itemnew,partnumbernew);
+  console.log(getDataId);
+
+    $.post("/save/editdata",{  
+							              'ServergetDataId':getDataId,	
+							              'shopnew':shopnew,
+                            'itemnew':itemnew,
+                            'partnumbernew':partnumbernew,
+                            'pricenew':pricenew,
+                            'amountnew':amountnew,
+                            'sumpricenew':sumpricenew,	
+							              'responsiblepersonnew':responsiblepersonnew,
+                            'statusznew':statusznew,
+                            //amountnew:amountnew,
+                            // nameordernew:nameordernew,
+                            // statusnew:statusnew,
+                            // department: department
+                            
+                        },function(data, status){
+                          window.location.href = "/user";
+							          //showData();
+        });
+}			
+		
+var getValueLocalStorage = localStorage.getItem('thisIsParameterName');
+var getValueLocalStorageNameOrder = localStorage.getItem("thisIsParameterNameForNameOrder");
+var getValueLocalStorageAmount = localStorage.getItem("thisIsParameterNameForAmount");
+var getDataId = "";
+
+
+
+  </script>
+  
+
+</body>
+</html>
+
+
